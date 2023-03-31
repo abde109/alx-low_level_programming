@@ -11,4 +11,7 @@ char *string_toupper(char *);
 char *cap_string(char *);
 char *leet(char *);
 
+/* Add the print_buffer function prototype */
+void print_buffer(char *b, int size);
+
 #endif
