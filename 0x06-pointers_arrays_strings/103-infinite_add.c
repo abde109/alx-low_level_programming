@@ -17,12 +17,12 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
     if (len + 1 >= size_r)
         return (0);
 
-    r[len] = '\0';
+    r[len + 1] = '\0';
 
     carry = 0;
     idx1 = len1 - 1;
     idx2 = len2 - 1;
-    idx_r = len - 1;
+    idx_r = len;
 
     while (idx1 >= 0 || idx2 >= 0 || carry != 0)
     {
@@ -43,3 +43,4 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 
     return (r + idx_r + 1);
 }
+
