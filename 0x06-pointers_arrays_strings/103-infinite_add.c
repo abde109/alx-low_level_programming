@@ -1,60 +1,34 @@
 #include "main.h"
 /**
- * infinite_add -  function that adds two numbers.
- * @n1: pointer to first number.
- * @n2: pointer to second number
- * @r: pointer to buffer that stores the result.
- * @size_r: size of the buffer.
- *
- * You can assume that you will always get positive numbers, or 0.
- * You can assume that there will be only digits in the strings n1 and n2.
- * n1 and n2 will never be empty.
- * If the result can not be stored in r the function must return 0.
- *
- * Return: A pointer to the result.
- *
+ * cap_string - capitalize all words of string
+ * Return: void
+ * @s: string
  */
-
-char *infinite_add(char *n1, char *n2, char *r, int size_r)
-
+char *cap_string(char *s)
 {
-	/* local variable declaration */
-	int i = 0, j = 0, k, l = 0, f, s, d = 0;
+	int i = 0, j = 0;
 
-	while (n1[i] != '\0')
+	char seps[] = {32, 10, 9, 44, 59, 46, 33, 63, 34, 40, 41, 123, 125};
+
+	int size = sizeof(seps) / sizeof(seps[0]);
+
+	while (s[i] != 0)
+	{
+		char c = s[i];
+
+		for (j = 0; j < size; j++)
+		{
+			if (c == seps[j] && s[i + 1] >= 'a' && s[i + 1] <= 'z')
+			{
+				s[i + 1] = 'A' + (s[i + 1] - 'a');
+				break;
+			}
+		}
 		i++;
-	while (n2[j] != '\0')
-		j++;
-	if (i > j)
-		l = i;
-	else
-		l = j;
-	if (l + 1 > size_r)
-		return (0);
-	r[l] = '\0';
-	for (k = l - 1 ; k >= 0 ; k--)
-	{
-		i--;
-		j--;
-		if (i >= 0)
-			f = n1[i] - '0';
-		else
-			f = 0;
-		if (j >= 0)
-			s = n2[j] - '0';
-		else
-			s = 0;
-		r[k] = (f + s + d) % 10 + '0';
-		d = (f + s + d) / 10;
 	}
-	if (d == 1)
-	{
-		r[l + 1] = '\0';
-		if (l + 2 > size_r)
-			return (0);
-		while (l-- >= 0)
-			r[l + 1] = r[l];
-		r[0] = d + '0';
-	}
-	return (r);
+
+	if (s[0] >= 'a' && s[0] <= 'z')
+		s[0] = 'A' + (s[0] - 'a');
+
+	return (s);
 }
