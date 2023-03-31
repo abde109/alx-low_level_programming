@@ -1,60 +1,45 @@
 #include "main.h"
-#include <stdio.h>
 
-/**
- * main - check the code
- *
- * Return: Always 0.
- */
-int main(void)
+char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-        char *n = "1234567892434574367823574575678477685785645685876876774586734734563456453743756756784458";
-        char *m = "9034790663470697234682914569346259634958693246597324659762347956349265983465962349569346";
-        char r[100];
-        char r2[10];
-        char r3[11];
-        char *res;
+    int len1, len2, len, carry, sum, idx1, idx2, idx_r;
 
-        res = infinite_add(n, m, r, 100);
-        if (res == 0)
-        {
-                printf("Error\n");
-        }
-        else
-        {
-                printf("%s + %s = %s\n", n, m, res);
-        }
-        n = "1234567890";
-        m = "1";
-        res = infinite_add(n, m, r2, 10);
-        if (res == 0)
-        {
-                printf("Error\n");
-        }
-        else
-        {
-                printf("%s + %s = %s\n", n, m, res);
-        }
-        n = "999999999";
-        m = "1";
-        res = infinite_add(n, m, r2, 10);
-        if (res == 0)
-        {
-                printf("Error\n");
-        }
-        else
-        {
-                printf("%s + %s = %s\n", n, m, res);
-        }
-        res = infinite_add(n, m, r3, 11);
-        if (res == 0)
-        {
-                printf("Error\n");
-        }
-        else
-        {
-                printf("%s + %s = %s\n", n, m, res);
-        }
+    for (len1 = 0; n1[len1] != '\0'; len1++)
+        ;
+    for (len2 = 0; n2[len2] != '\0'; len2++)
+        ;
+
+    if (len1 > len2)
+        len = len1;
+    else
+        len = len2;
+
+    if (len + 1 >= size_r)
         return (0);
-}
 
+    r[len] = '\0';
+
+    carry = 0;
+    idx1 = len1 - 1;
+    idx2 = len2 - 1;
+    idx_r = len - 1;
+
+    while (idx1 >= 0 || idx2 >= 0 || carry != 0)
+    {
+        sum = carry;
+        if (idx1 >= 0)
+            sum += n1[idx1] - '0';
+
+        if (idx2 >= 0)
+            sum += n2[idx2] - '0';
+
+        carry = sum / 10;
+        r[idx_r] = (sum % 10) + '0';
+
+        idx1--;
+        idx2--;
+        idx_r--;
+    }
+
+    return (r + idx_r + 1);
+}
