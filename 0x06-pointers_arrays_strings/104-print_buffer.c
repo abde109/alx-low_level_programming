@@ -3,10 +3,9 @@
 
 /**
  * rev_array - reverse array
- * @n: integer params
+ * @n: char pointer
  * Return: 0
  */
-
 void rev_array(char *n)
 {
     int i = 0;
@@ -35,7 +34,6 @@ void rev_array(char *n)
  * @size_r: buffer size
  * Return: pointer to calling function
  */
-
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
     int carry = 0, i = 0, j = 0, digits = 0;
@@ -77,3 +75,4 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
     rev_array(r);
     return (r);
 }
+
