@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * print_buffer - prints buffer
@@ -7,7 +6,6 @@
  * @size: size
  * Return: void
  */
-
 void print_buffer(char *b, int size)
 {
     int o, j, i;
@@ -16,22 +14,35 @@ void print_buffer(char *b, int size)
 
     if (size <= 0)
     {
-        printf("\n");
+        _putchar('\n');
         return;
     }
     while (o < size)
     {
         j = size - o < 10 ? size - o : 10;
-        printf("%08x: ", o);
+
+        _putchar(o / (16 * 16 * 16) % 16 + '0');
+        _putchar(o / (16 * 16) % 16 + '0');
+        _putchar(o / 16 % 16 + '0');
+        _putchar(o % 16 + '0');
+        _putchar(':');
+        _putchar(' ');
+
         for (i = 0; i < 10; i++)
         {
             if (i < j)
-                printf("%02x", *(b + o + i));
+            {
+                _putchar(*(b + o + i) / 16 + '0');
+                _putchar(*(b + o + i) % 16 + '0');
+            }
             else
-                printf("  ");
+            {
+                _putchar(' ');
+                _putchar(' ');
+            }
             if (i % 2)
             {
-                printf(" ");
+                _putchar(' ');
             }
         }
         for (i = 0; i < j; i++)
@@ -42,9 +53,9 @@ void print_buffer(char *b, int size)
             {
                 c = '.';
             }
-            printf("%c", c);
+            _putchar(c);
         }
-        printf("\n");
+        _putchar('\n');
         o += 10;
     }
 }
