@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * print_buffer - prints buffer
@@ -15,27 +16,22 @@ void print_buffer(char *b, int size)
 
     if (size <= 0)
     {
-        _putchar('\n');
+        printf("\n");
         return;
     }
     while (o < size)
     {
         j = size - o < 10 ? size - o : 10;
-        print_hex(o);
+        printf("%08x: ", o);
         for (i = 0; i < 10; i++)
         {
             if (i < j)
-            {
-                print_hex(*(b + o + i));
-            }
+                printf("%02x", *(b + o + i));
             else
-            {
-                _putchar(' ');
-                _putchar(' ');
-            }
+                printf("  ");
             if (i % 2)
             {
-                _putchar(' ');
+                printf(" ");
             }
         }
         for (i = 0; i < j; i++)
@@ -46,28 +42,10 @@ void print_buffer(char *b, int size)
             {
                 c = '.';
             }
-            _putchar(c);
+            printf("%c", c);
         }
-        _putchar('\n');
+        printf("\n");
         o += 10;
     }
-}
-
-void print_hex(int num)
-{
-    int i;
-    char hex[9];
-    for (i = 7; i >= 0; i--)
-    {
-        hex[i] = "0123456789abcdef"[num % 16];
-        num /= 16;
-    }
-    hex[8] = '\0';
-    for (i = 0; i < 8; i++)
-    {
-        _putchar(hex[i]);
-    }
-    _putchar(':');
-    _putchar(' ');
 }
 
