@@ -6,6 +6,7 @@
  * @size: size
  * Return: void
  */
+
 void print_buffer(char *b, int size)
 {
     int o, j, i;
@@ -20,7 +21,6 @@ void print_buffer(char *b, int size)
     while (o < size)
     {
         j = size - o < 10 ? size - o : 10;
-
         _putchar(o / (16 * 16 * 16) % 16 + '0');
         _putchar(o / (16 * 16) % 16 + '0');
         _putchar(o / 16 % 16 + '0');
