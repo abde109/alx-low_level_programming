@@ -1,62 +1,72 @@
-#include "lists.h"
+#include <stdlib.h>
 #include <stdio.h>
+#include "lists.h"
 
 /**
- * print_listint_safe - print a listint_t list safely
- * @head: pointer to the start of the list
+ * free_list - frees a linked list
+ * @head: pointer to the head of the list
+ *
+ * Return: void
+ */
+void free_list(listp_t **head)
+{
+    listp_t *temp;
+    listp_t *current;
+
+    if (head != NULL)
+    {
+        current = *head;
+        while ((temp = current) != NULL)
+        {
+            current = current->next;
+            free(temp);
+        }
+        *head = NULL;
+    }
+}
+
+/**
+ * print_listint_safe - prints a listint_t linked list safely
+ * @head: pointer to the head of the list
+ *
  * Return: the number of nodes in the list
  */
 size_t print_listint_safe(const listint_t *head)
 {
-    const listint_t *slow = head, *fast = head, *start = head;
-    size_t nodes = 0;
-    int loop_found = 0;
+    size_t node_count = 0;
+    listp_t *visited_nodes, *new_node, *iterator;
 
-    if (head == NULL)
-        return (0);
-
-    while (slow != NULL && fast != NULL && fast->next != NULL)
+    visited_nodes = NULL;
+    while (head != NULL)
     {
-        slow = slow->next;
-        fast = fast->next->next;
+        new_node = malloc(sizeof(listp_t));
 
-        if (slow == fast)
+        if (new_node == NULL)
+            exit(98);
+
+        new_node->p = (void *)head;
+        new_node->next = visited_nodes;
+        visited_nodes = new_node;
+
+        iterator = visited_nodes;
+
+        while (iterator->next != NULL)
         {
-            loop_found = 1;
-            break;
-        }
-    }
-
-    if (loop_found)
-    {
-        /* Reset slow pointer */
-        slow = head;
-
-        while (slow != fast)
-        {
-            slow = slow->next;
-            fast = fast->next;
+            iterator = iterator->next;
+            if (head == iterator->p)
+            {
+                printf("-> [%p] %d\n", (void *)head, head->n);
+                free_list(&visited_nodes);
+                return (node_count);
+            }
         }
 
-        start = slow;
+        printf("[%p] %d\n", (void *)head, head->n);
+        head = head->next;
+        node_count++;
     }
 
-    slow = head;
-
-    while (slow != NULL)
-    {
-        printf("[%p] %d\n", (void *)slow, slow->n);
-        nodes++;
-
-        if (slow == start && loop_found)
-        {
-            printf("-> [%p] %d\n", (void *)slow, slow->n);
-            break;
-        }
-
-        slow = slow->next;
-    }
-
-    return (nodes);
+    free_list(&visited_nodes);
+    return (node_count);
 }
 
