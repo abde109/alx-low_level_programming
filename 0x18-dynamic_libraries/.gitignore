@@ -1,2 +1,4 @@
 libdynamic.c
 libdynamic.o
+0-main.c
+liball.so
