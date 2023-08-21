@@ -2,3 +2,5 @@ libdynamic.c
 libdynamic.o
 0-main.c
 liball.so
+100-operations.c
+100-operations.o
