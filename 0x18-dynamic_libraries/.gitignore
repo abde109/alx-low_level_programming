@@ -4,3 +4,8 @@ libdynamic.o
 liball.so
 100-operations.c
 100-operations.o
+win.c
+win.so
+101-md5_gm
+gm
+101-libfake.c
