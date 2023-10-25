@@ -7,13 +7,8 @@ NAME = school
 RM = rm -f
 
 # Rules
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+all: $(OBJ) 
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	$(RM) *~ \#*\#
@@ -25,5 +20,3 @@ fclean: clean oclean
 	$(RM) $(NAME)
 
 re: fclean all
-
-.PHONY: all clean oclean fclean re
