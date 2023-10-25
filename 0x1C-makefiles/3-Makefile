@@ -1,33 +1,22 @@
-# Compiler
+# Varibles
 CC = gcc
-
-# Source and Object Files
 SOURCE = main.c school.c
 OBJECT = $(SOURCE:.c=.o)
-
-# Output Name
 NAME = school
-
-# Delete Command
 DELETE = rm -rf
 
-# Build Executable
+# all
 all: $(OBJECT)
 	$(CC) $(OBJECT) -o $(NAME)
 
-# Phony Targets
 .PHONY: clean oclean fclean re
 
-# Clean Up Executable and Temporary Files
 clean:
 	$(DELETE) *~ $(NAME)
 
-# Clean Up Object Files
 oclean:
 	$(DELETE) $(OBJECT)
 
-# Full Clean (Object Files + Executable)
 fclean: clean oclean
 
-# Re-compile
 re: oclean all
