@@ -1,21 +1,21 @@
 # Varibles
 CC = gcc
-SOURCE = main.c school.c
-OBJECT = $(SOURCE:.c=.o)
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
 NAME = school
-DELETE = rm -rf
+RM = rm -rf
 
 # all
-all: $(OBJECT)
-	$(CC) $(OBJECT) -o $(NAME)
+all: $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
 .PHONY: clean oclean fclean re
 
 clean:
-	$(DELETE) *~ $(NAME)
+	$(RM) *~ $(NAME)
 
 oclean:
-	$(DELETE) $(OBJECT)
+	$(RM) $(OBJ)
 
 fclean: clean oclean
 
