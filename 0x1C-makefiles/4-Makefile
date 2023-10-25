@@ -1,7 +1,8 @@
 # Variables
+# Variables
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic
-SRC = $(SRC:.c=.o)
+SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
 NAME = school
 RM = rm -rf
