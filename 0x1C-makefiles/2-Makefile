@@ -1,0 +1,14 @@
+# Variables
+CC = gcc
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+NAME = school
+
+# Rule 'all'
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
+
+%.o: %.c
+	$(CC) -c $< -o $@

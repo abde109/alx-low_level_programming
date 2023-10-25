@@ -3,3 +3,5 @@ m.h
 main.c
 school.c
 school
+main.o
+school.o
