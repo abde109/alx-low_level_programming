@@ -12,9 +12,6 @@ RM = rm -f
 all: m.h $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-$(NAME): m.h $(SRC)
-	$$(CC) $(OBJ) -o $(NAME)
-
 clean:
 	$(RM) *~ $(NAME)
 
