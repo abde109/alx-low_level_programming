@@ -1,0 +1,28 @@
+# Variables
+CC = gcc
+SOURCE = main.c school.c
+OBJECT = $(SOURCE:.c=.o)
+NAME = my_unique_school_app
+DELETE = rm -rf
+
+# Targets that do not produce a file with the same name
+.PHONY: clean oclean fclean re
+
+all: $(OBJECT)
+	@echo "Linking object files and creating executable..."
+	@$(CC) $(OBJECT) -o $(NAME)
+
+clean: 
+	@echo "Cleaning temporary and backup files..."
+	@$(DELETE) *~ $(NAME)
+
+oclean: 
+	@echo "Cleaning object files..."
+	@$(DELETE) $(OBJECT)
+
+fclean: clean oclean
+	@echo "Full clean completed."
+
+re: oclean all
+	@echo "Project recompiled."
+
