@@ -1,34 +1,25 @@
 # Variables
 CC := gcc
-SRC = main.c school.c
-OBJ = $(SRC:.c=.o)
+SRC := main.c school.c
 NAME := school
+RM := rm -f
 CFLAGS := -Wall -Werror -Wextra -pedantic
-RM := rm -rf
 
-# Main rules
-.PHONY: all clean fclean oclean re _all_
+# Phony targets
+.PHONY: all clean oclean fclean re
 
-all: 
-	$(CC) $(CFLAGS) -o $(NAME) $(SRC)
+# Rule: all
+all: $(NAME)
 
-_all_:
-	@$(CC) $(CFLAGS) -o $(NAME) $(SRC)
+$(NAME): m.h $(SRC)
+	@$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 
-# clean rules
 clean:
-	@$(RM) *~ \#*\# $(NAME)
+	-@$(RM) *~ $(NAME)
 
 oclean:
-	@$(RM) $(OBJ)
+	-@$(RM) *.o
 
 fclean: clean oclean
 
-re: fclean all
-
-# Additional Requirements
-m.h:
-	@echo "m.h is missing. Cannot compile."
-	@exit 1
-
-_all_: m.h
+re: oclean all
