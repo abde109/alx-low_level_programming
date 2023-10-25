@@ -3,6 +3,7 @@ CFLAGS = -Wall -Werror -Wextra -pedantic
 SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
 NAME = my_program
+RM = rm -rf
 
 all: $(NAME)
 
@@ -13,6 +14,6 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(NAME)
+	$(RM) $(OBJ) $(NAME)
 
 .PHONY: all clean
