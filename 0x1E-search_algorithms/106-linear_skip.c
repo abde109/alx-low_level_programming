@@ -28,17 +28,25 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 		express = express->next;
 
 	printf("Value found between indexes [%lu] and [%lu]\n",
-	node->express->index, node->express->n);
+	   node->index, node->express ? node->express->index : 0);
+
 
 	while (node && node->n < value)
 	{
-		printf("Value checked at index [%lu] = [%d]\n", node->index, node->n);
+		printf("Value found between indexes [%lu] and [%lu]\n",
+	   node->index, node->express ? node->express->index : 0);
+
+
+
 		node = node->next;
 	}
 
 	if (node && node->n == value)
 	{
-		printf("Value checked at index [%lu] = [%d]\n", node->index, node->n);
+		printf("Value checked at index [%lu] = [%d]\n",
+	   node->express->index, node->express->n);
+
+
 		return (node);
 	}
 
