@@ -15,6 +15,9 @@ int interpolation_search(int *array, size_t size, int value)
 	size_t low = 0, high = size - 1, pos;
 	double box;
 
+	if (array == NULL || size == 0)
+		return (-1);
+
 	while (low <= high && value >= array[low] && value <= array[high])
 	{
 		box = (value - array[low]);
